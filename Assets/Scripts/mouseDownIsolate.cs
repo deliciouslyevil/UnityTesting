@@ -2,31 +2,33 @@ using UnityEngine;
 
 public class mouseDownIsolate : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject[] _gos;
-    [SerializeField]
-    private bool _state = false;
 
-    private void Start()
-    {
-
-    }
+    public GameObject[] gos;
+    public bool state = false;
 
     private void OnMouseDown()
     {
+      Debug.Log("Clicked!");
     GameObject current = this.gameObject;
-
-      if (_state == false){
-          foreach (GameObject go in _gos) {
-              if (go != current)
+      Debug.Log("The game object that this script is attached to is: " + current);
+      if (state == false){
+          Debug.Log("The state is false");
+          foreach (GameObject go in gos){
+              if (go != current){
                   go.SetActive (false);
+                  Debug.Log(go + "is turning off");
+                }
           }
       }
       else{
-        foreach (GameObject go in _gos) {
+        Debug.Log("The state is true");
+        foreach (GameObject go in gos) {
                 go.SetActive (true);
+                Debug.Log(go + "is turning on");
+
         }
       }
-    _state = !_state;
+    state = !state;
+    Debug.Log("changed state to" + state);
     }
   }
